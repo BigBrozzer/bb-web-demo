@@ -10,10 +10,10 @@ export default class PostDescription extends Component {
                             body={body}
                             submitEdit={submitEdit}/>
             : (
-                <div>
+                <section>
                     <h2>{title}</h2>
-                    <p>{body}</p>
-                </div>
+                    <article>{body}</article>
+                </section>
             );
     }
 }
