@@ -6,23 +6,8 @@ import * as actionCreators from '../actions/posts';
 import Post from '../components/Post';
 
 class Blog extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleDelete = this.handleDelete.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
-    }
-
     componentDidMount() {
         this.props.fetchPosts();
-    }
-
-    handleDelete(id) {
-        this.props.deletePost(id);
-    }
-
-    handleEdit(editedPost) {
-        this.props.editPost(editedPost);
     }
 
     render() {
@@ -34,9 +19,9 @@ class Blog extends Component {
                     : this.props.posts.map((post) =>
                         <Post key={post.id}
                             post={post}
-                            editPost={this.handleEdit}
-                            deletePost={this.handleDelete}
-                            fetchComments={this.props.fetchComments.bind(null)}/>)
+                            editPost={this.props.editPost}
+                            deletePost={this.props.deletePost}
+                            fetchComments={this.props.fetchComments}/>)
                 }
             </div>
         );
@@ -47,8 +32,7 @@ function mapStateToProps(state) {
     return {
         posts: state.posts.posts,
         postsFetching: state.posts.fetching,
-        postsError: state.posts.error,
-        modals: state.modals
+        postsError: state.posts.error
     }
 }
 
