@@ -10,17 +10,21 @@ export default class PostEditForm extends Component {
     render() {
         const {title, body} = this.props;
         return (
-            <form onSubmit={this.submitForm.bind(this)}>
-                <input type="text"
-                       style={{display: 'block'}}
-                       ref="name"
-                       defaultValue={title} required/>
-                <input type="textarea"
-                       style={{display: 'inline-block'}}
-                       ref="description"
-                       defaultValue={body}/>
-                <button type="submit"
-                        style={{display: 'inline-block'}}>Submit</button>
+            <form className="post-edit-container" onSubmit={this.submitForm.bind(this)}>
+                <label>
+                    <h5>Post title</h5>
+                    <input className="input"
+                           ref="name"
+                           defaultValue={title} required/>
+                </label>
+                <label>
+                    <h5>Post text</h5>
+                    <textarea className="input"
+                              ref="description"
+                              defaultValue={body}/>
+                    </label>
+                <button className="button-submit side-right"
+                        type="submit">Submit</button>
             </form>
         )
     }

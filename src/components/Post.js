@@ -42,7 +42,7 @@ export default class Post extends Component {
         const {commentsShown, editMode} = this.state;
         return (
             <div>
-                <div style={{border: '1px solid', margin: '0px auto', padding: '5px'}}>
+                <div className="post">
                     <PostDescription editMode={editMode}
                                      title={title}
                                      body={body}

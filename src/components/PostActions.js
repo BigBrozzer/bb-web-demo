@@ -29,10 +29,10 @@ export default class PostActions extends Component {
 
     render() {
         return (
-            <div style={{position: 'relative'}}>
-                <button style={{marginRight: '5px'}} onClick={this.props.toggleEditMode}>{this.getEditButtonName()}</button>
-                <button onClick={this.handleDelete}>Delete</button>
-                <button style={{position: 'absolute', bottom: '0', right: '0'}} onClick={this.props.toggleComments}>{this.getCommentsButtonName()}</button>
+            <div className="post-actions-container">
+                <button className="button button-margin-right" onClick={this.props.toggleEditMode}>{this.getEditButtonName()}</button>
+                <button className="button-danger" onClick={this.handleDelete}>Delete</button>
+                <button className="button side-right" onClick={this.props.toggleComments}>{this.getCommentsButtonName()}</button>
             </div>
         )
     }

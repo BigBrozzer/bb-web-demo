@@ -10,8 +10,8 @@ export default (props) => {
                         submitEdit={submitEdit}/>
         : (
             <section>
-                <h2>{title}</h2>
-                <article>{body}</article>
+                <h2 className="post-title">{title}</h2>
+                <article className="post-text">{body}</article>
             </section>
         );
 }

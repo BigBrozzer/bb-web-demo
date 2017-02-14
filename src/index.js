@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import Blog from './containers/Blog';
 import store from './store';
 
-import './app.styl';
+import './styles/app.styl';
 
 ReactDOM.render(<Provider store={store}>
     <Blog />
