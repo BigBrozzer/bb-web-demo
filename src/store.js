@@ -2,6 +2,7 @@ import {applyMiddleware, createStore} from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
+import { bbMiddleware, bbMLabProvider } from 'big-brother';
 
 import rootReducer from './reducers/index';
 
@@ -12,7 +13,14 @@ const defaultState = {
         error: null
     }
 };
-const middleware = applyMiddleware(thunk, logger(), promise());
+
+const journeyMiddleware = bbMiddleware(rootReducer, bbMLabProvider({
+    dbName: 'my-package',
+    collName: 'journey',
+    apiKey: 'Orf_sZpA2Pp2O5JdEoVUOZqq5dcRpeO5',
+}));
+
+const middleware = applyMiddleware(journeyMiddleware, thunk, logger(), promise());
 const store = createStore(rootReducer, defaultState, middleware);
 
 if (module.hot) {

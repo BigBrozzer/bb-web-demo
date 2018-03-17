@@ -21,6 +21,8 @@ class Blog extends Component {
                             post={post}
                             editPost={this.props.editPost}
                             deletePost={this.props.deletePost}
+                            toggleEditMode={this.props.toggleEditMode}
+                            toggleCommentsShown={this.props.toggleCommentsShown}
                             fetchComments={this.props.fetchComments}/>)
                 }
             </div>
@@ -36,8 +38,8 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispachToProps(dispach) {
-    return bindActionCreators(actionCreators, dispach);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispachToProps)(Blog)
+export default connect(mapStateToProps, mapDispatchToProps)(Blog)

@@ -72,3 +72,17 @@ export function fetchCommentsRejected(payload) {
         payload
     };
 }
+
+export function toggleEditMode(payload) {
+    return {
+        type: 'POST_EDIT_MODE',
+        payload
+    };
+}
+
+export function toggleCommentsShown(payload) {
+    return {
+        type: 'POST_COMMENTS_SHOWN',
+        payload
+    };
+}
