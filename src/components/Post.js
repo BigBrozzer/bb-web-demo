@@ -20,16 +20,16 @@ export default class Post extends Component {
 
     toggleComments(e) {
         e.preventDefault();
-        const {commentsShown} = this.state;
+        const { post } = this.props;
 
-        if (!this.props.post.comments) {
-            this.props.fetchComments(this.props.post.id);
+        if (!post.comments) {
+            this.props.fetchComments(post.id);
         }
-        this.setState({commentsShown: !commentsShown})
+        this.props.toggleCommentsShown(post);
     }
 
     toggleEditMode() {
-        this.setState((prevState) => ({editMode: !prevState.editMode}));
+        this.props.toggleEditMode(this.props.post);
     }
 
     handleEdit(title, body) {
@@ -38,23 +38,22 @@ export default class Post extends Component {
     }
 
     render() {
-        const {title, body, id} = this.props.post;
-        const {commentsShown, editMode} = this.state;
+        const {title, body, id, isCommentsShown, isEditMode } = this.props.post;
         return (
             <div>
                 <div className="post">
-                    <PostDescription editMode={editMode}
+                    <PostDescription editMode={isEditMode}
                                      title={title}
                                      body={body}
                                      submitEdit={this.handleEdit}/>
                     <PostActions postId={id}
-                                 editMode={editMode}
-                                 commentsShown={commentsShown}
+                                 editMode={isEditMode}
+                                 commentsShown={isCommentsShown}
                                  toggleComments={this.toggleComments}
                                  deletePost={this.props.deletePost}
                                  toggleEditMode={this.toggleEditMode}/>
                 </div>
-                {commentsShown && <PostComments {...this.props.post}/>}
+                {isCommentsShown && <PostComments {...this.props.post}/>}
             </div>
         );
     }

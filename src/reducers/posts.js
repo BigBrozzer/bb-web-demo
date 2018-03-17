@@ -21,18 +21,35 @@ export default function posts(state = {
                 fetching: false,
                 posts: action.payload
             };
-        case 'EDIT_POST':
+        case 'EDIT_POST': {
             const {id} = action.payload;
             const newPosts = state.posts.map((post) => post.id === id ? action.payload : post);
             return {
                 ...state,
                 posts: newPosts
             };
+        }
         case 'DELETE_POST':
             return {
                 ...state,
                 posts: state.posts.filter(({id}) => id !== action.payload)
             };
+        case 'POST_EDIT_MODE': {
+            const { id } = action.payload;
+            const newPosts = state.posts.map((post) => post.id === id ? {...post, isEditMode: !post.isEditMode } : post);
+            return {
+                ...state,
+                posts: newPosts
+            };
+        }
+        case 'POST_COMMENTS_SHOWN': {
+            const { id } = action.payload;
+            const newPosts = state.posts.map((post) => post.id === id ? {...post, isCommentsShown: !post.isCommentsShown } : post);
+            return {
+                ...state,
+                posts: newPosts
+            };
+        }
         case 'FETCH_COMMENTS':
             return {
                 ...state,
