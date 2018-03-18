@@ -12,6 +12,13 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.get('/*.png', function(req, res) {
+  console.log(req);
+  console.log(req.originalUrl);
+
+  res.sendFile(path.join(__dirname, 'node_modules/big-brother/dist'+req.originalUrl));
+});
+
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
